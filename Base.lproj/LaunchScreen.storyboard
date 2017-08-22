@@ -1,9 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GillSans.ttc">
+            <string>GillSans</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -16,12 +26,68 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seamless-heart-background-159" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-Eq-FY6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feY-67-LjH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hNw-cn-kbh">
+                                        <rect key="frame" x="75.5" y="200" width="224" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="1tO-tP-SpD"/>
+                                            <constraint firstAttribute="width" secondItem="hNw-cn-kbh" secondAttribute="height" multiplier="241:150" id="4j9-G9-ev4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SnapMojo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X45-9q-FRz">
+                                        <rect key="frame" x="96" y="347" width="183.5" height="70.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70.5" id="GKU-on-TbO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="46"/>
+                                        <color key="textColor" red="0.85882352939999995" green="0.67843137249999996" blue="0.73333333329999995" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© SnapMojo 2017" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDt-8s-Aag">
+                                        <rect key="frame" x="2" y="642.5" width="371" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hNw-cn-kbh" firstAttribute="top" secondItem="feY-67-LjH" secondAttribute="top" constant="200" id="DUe-P3-n46"/>
+                                    <constraint firstAttribute="bottom" secondItem="EDt-8s-Aag" secondAttribute="bottom" constant="10" id="Dcf-k5-cqM"/>
+                                    <constraint firstAttribute="trailing" secondItem="EDt-8s-Aag" secondAttribute="trailing" constant="2" id="FA9-Sm-FR1"/>
+                                    <constraint firstItem="hNw-cn-kbh" firstAttribute="centerX" secondItem="feY-67-LjH" secondAttribute="centerX" id="ZQe-CH-0eK"/>
+                                    <constraint firstItem="X45-9q-FRz" firstAttribute="top" secondItem="hNw-cn-kbh" secondAttribute="bottom" constant="7" id="g91-tE-Yb7"/>
+                                    <constraint firstItem="X45-9q-FRz" firstAttribute="centerX" secondItem="feY-67-LjH" secondAttribute="centerX" id="y17-gi-OBL"/>
+                                    <constraint firstItem="EDt-8s-Aag" firstAttribute="leading" secondItem="feY-67-LjH" secondAttribute="leading" constant="2" id="zem-GE-OEz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33333333329999998" green="0.20000000000000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="AaS-Eq-FY6" secondAttribute="bottom" id="J4S-NZ-D5G"/>
+                            <constraint firstItem="feY-67-LjH" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Mhb-4l-a9M"/>
+                            <constraint firstItem="AaS-Eq-FY6" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Wp7-2f-trs"/>
+                            <constraint firstAttribute="trailing" secondItem="AaS-Eq-FY6" secondAttribute="trailing" id="dAg-Fk-ghM"/>
+                            <constraint firstAttribute="trailing" secondItem="feY-67-LjH" secondAttribute="trailing" id="dMb-Vg-6ka"/>
+                            <constraint firstItem="AaS-Eq-FY6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="e8L-Xt-jjG"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="feY-67-LjH" secondAttribute="bottom" id="gT1-uY-yUP"/>
+                            <constraint firstItem="feY-67-LjH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="gmR-xK-bBL"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="261" height="202"/>
+        <image name="seamless-heart-background-159" width="980" height="980"/>
+    </resources>
 </document>

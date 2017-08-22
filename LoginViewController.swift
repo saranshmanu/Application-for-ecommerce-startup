@@ -10,9 +10,14 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+class LoginViewController: UIViewController, GIDSignInDelegate {
+
+    @IBAction func GoogleSigninAction(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    @IBOutlet weak var GoogleSignIn: UIButton!
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        // ...
         if let error = error {
             // ...
             return
@@ -24,21 +29,27 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             if let error = error {
                 // ...
+                //to initiate alert if login is unsuccesfull
+                let alertController = UIAlertController(title: "Incorrect credentials", message: "Incorrect registration number or password", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
                 return
             }
             // User is signed in
             print("success")
             // ...
+            //Go to the HomeViewController if the login is sucessfull
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+            self.present(vc!, animated: true, completion: nil)
+            
         }
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
+        // Initialize sign-in
         // Do any additional setup after loading the view.
     }
     

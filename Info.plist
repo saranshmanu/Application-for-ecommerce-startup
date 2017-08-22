@@ -14,12 +14,6 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app uses the camera for testing purposes</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app uses the library for testing purposes</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app requires location permision</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -27,7 +21,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.243262677269-hg41d049o6sok9ll88uj16pdfjnkmpr6</string>
+				<string>com.googleusercontent.apps.433987706595-c1t6o3us3bp8vtppjabcra41d5ru5ebe</string>
 			</array>
 		</dict>
 	</array>
@@ -35,6 +29,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses the camera for testing purposes</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires location permision</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app uses the library for testing purposes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -44,7 +44,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarHidden</key>
-	<true/>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

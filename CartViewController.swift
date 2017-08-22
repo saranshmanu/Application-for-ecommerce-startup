@@ -26,7 +26,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cartTableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
-
     
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
@@ -35,10 +34,10 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         cartTableView.delegate = self
         cartTableView.dataSource = self
         checkoutButton.layer.cornerRadius = checkoutButton.frame.height/2
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         var total = 0
         if cart.count != 0{
             for i in 0...(cart.count-1){

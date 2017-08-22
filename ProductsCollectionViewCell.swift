@@ -10,6 +10,7 @@ import UIKit
 
 class ProductsCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var comingSoonLabel: UIVisualEffectView!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var productSmallDescription: UILabel!

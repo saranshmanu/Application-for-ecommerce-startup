@@ -17,14 +17,23 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = productsCollectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCell", for: indexPath) as! ProductsCollectionViewCell
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
         cell.productImage.image = UIImage.init(named: productCover[indexPath.row])
         cell.productLabel.text = productName[indexPath.row]
         cell.productSmallDescription.text = productSmallDescription[indexPath.row]
+        if cell.productLabel.text == ""{
+            cell.isUserInteractionEnabled = false
+            cell.comingSoonLabel.isHidden = false
+        }
+        else{
+            cell.isUserInteractionEnabled = true
+            cell.comingSoonLabel.isHidden = true
+        }
         return cell
     }
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
-        UINavigationBar.appearance().tintColor = UIColor.black
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedItemNumber = indexPath.row
@@ -34,9 +43,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var productsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
-        UINavigationBar.appearance().tintColor = UIColor.black
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +54,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
     }
-    
 
     /*
     // MARK: - Navigation

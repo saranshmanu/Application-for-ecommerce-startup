@@ -8,17 +8,17 @@
 
 import UIKit
 import ImageSlideshow
-import ImagePicker
-import Lightbox
 
-class ProductDetailsViewController: UIViewController, ImagePickerDelegate {
+
+class ProductDetailsViewController: UIViewController {
+    let localSource = [[ImageSource(imageString: "IMG_7604")!, ImageSource(imageString: "IMG_7626")!, ImageSource(imageString: "IMG_7635")!, ImageSource(imageString: "IMG_7652")!]]
     
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
     
     @IBAction func addToCartAction(_ sender: Any) {
-        buttonTouched(button: addToCartButton)
+        //buttonTouched(button: addToCartButton)
         cart.append(selectedItemNumber)
     }
     @IBOutlet weak var addToCartButton: ZFRippleButton!
@@ -28,35 +28,28 @@ class ProductDetailsViewController: UIViewController, ImagePickerDelegate {
     @IBOutlet var slideshow: ImageSlideshow!
     @IBOutlet weak var cardView: UIView!
     
-    let localSource = [ImageSource(imageString: "One")!, ImageSource(imageString: "Two")!, ImageSource(imageString: "Three")!, ImageSource(imageString: "Four")!]
-    
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        UINavigationBar.appearance().tintColor = UIColor.white
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        UINavigationBar.appearance().tintColor = UIColor.white
-        
         slideshow.backgroundColor = UIColor.clear
-        slideshow.slideshowInterval = 5.0
+        slideshow.slideshowInterval = 2.0
         slideshow.pageControlPosition = PageControlPosition.underScrollView
         slideshow.pageControl.currentPageIndicatorTintColor = UIColor.lightGray
         slideshow.pageControl.pageIndicatorTintColor = UIColor.white
         slideshow.contentScaleMode = UIViewContentMode.scaleAspectFill
-        slideshow.setImageInputs(localSource)
+        slideshow.setImageInputs(localSource[selectedItemNumber])
         slideshow.currentPageChanged = { page in
             print("current page:", page)
         }
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(ProductDetailsViewController.didTap))
         slideshow.addGestureRecognizer(recognizer)
-        
-        addToCartButton.layer.cornerRadius = addToCartButton.frame.height/2
-        cardView.layer.cornerRadius = 10
-        slideshow.layer.cornerRadius = 10
-        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        //addToCartButton.layer.cornerRadius = addToCartButton.frame.height/2
+        cardView.layer.cornerRadius = 0
         productLabel.text = productName[selectedItemNumber]
         productDescription.text = productDescriptionOfTheItem[selectedItemNumber]
         productPrice.text = productPriceOfTheItem[selectedItemNumber]
@@ -70,45 +63,6 @@ class ProductDetailsViewController: UIViewController, ImagePickerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-//    func makeButton() -> UIButton {
-//        let button = UIButton()
-//        button.setTitle("Show ImagePicker", for: .normal)
-//        button.setTitleColor(UIColor.black, for: .normal)
-//        button.addTarget(self, action: #selector(buttonTouched(button:)), for: .touchUpInside)
-//        return button
-//    }
-    
-    func buttonTouched(button: UIButton) {
-        var config = Configuration()
-        config.doneButtonTitle = "Finish"
-        config.noImagesTitle = "Sorry! There are no images here!"
-        config.recordLocation = false
-        let imagePicker = ImagePickerController()
-        imagePicker.configuration = config
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    // MARK: - ImagePickerDelegate
-    
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        imagePicker.dismiss(animated: true, completion: nil)
-    }
-    
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        guard images.count > 0 else { return }
-        let lightboxImages = images.map {
-            return LightboxImage(image: $0)
-        }
-        let lightbox = LightboxController(images: lightboxImages, startIndex: 0)
-        imagePicker.present(lightbox, animated: true, completion: nil)
-    }
-    
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        print("Done button pressed")
-        print(images)
-        imagePicker.dismiss(animated: true, completion: nil)
-    }
 
     /*
     // MARK: - Navigation
@@ -121,3 +75,5 @@ class ProductDetailsViewController: UIViewController, ImagePickerDelegate {
     */
 
 }
+
+
