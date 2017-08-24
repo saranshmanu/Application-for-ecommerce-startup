@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>243262677269-hg41d049o6sok9ll88uj16pdfjnkmpr6.apps.googleusercontent.com</string>
+	<string>433987706595-0ig6igj49g43a33rokg2gfbukchdfva7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.243262677269-hg41d049o6sok9ll88uj16pdfjnkmpr6</string>
+	<string>com.googleusercontent.apps.433987706595-0ig6igj49g43a33rokg2gfbukchdfva7</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAjlKKGLFRTu1yYXpOJH7Y87Xm0IGwhP8M</string>
+	<string>AIzaSyAd5O0l3Iu_GxeuqVrTNWFyQqoGbnC3CiE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>243262677269</string>
+	<string>433987706595</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.skyblue.Startup</string>
+	<string>com.skyblue.mojo</string>
 	<key>PROJECT_ID</key>
-	<string>snapthing-77ed8</string>
+	<string>push-notifications-cb68c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>snapthing-77ed8.appspot.com</string>
+	<string>push-notifications-cb68c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:243262677269:ios:a6e2ad34a0e8c693</string>
+	<string>1:433987706595:ios:63e3d015c8ec6bc2</string>
 	<key>DATABASE_URL</key>
-	<string>https://snapthing-77ed8.firebaseio.com</string>
+	<string>https://push-notifications-cb68c.firebaseio.com</string>
 </dict>
 </plist>

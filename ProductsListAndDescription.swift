@@ -15,6 +15,4 @@ var productDescriptionOfTheItem = ["People take millions if not billions of phot
 
 var productPriceOfTheItem = ["563", "", ""]
 
-var cart = [Int]()
-
 var selectedItemNumber = 0

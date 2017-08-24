@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return productName.count

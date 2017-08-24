@@ -19,7 +19,6 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func addToCartAction(_ sender: Any) {
         //buttonTouched(button: addToCartButton)
-        cart.append(selectedItemNumber)
     }
     @IBOutlet weak var addToCartButton: ZFRippleButton!
     @IBOutlet weak var productPrice: UILabel!
