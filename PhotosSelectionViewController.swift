@@ -29,6 +29,7 @@ func randomString(length: Int) -> String {
 
 class PhotosSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate, OpalImagePickerControllerDelegate {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     let imagePicker = OpalImagePickerController()
     let pdfName = randomString(length: 15)
     
@@ -109,6 +110,9 @@ class PhotosSelectionViewController: UIViewController, UICollectionViewDelegate,
         }
     }
     
+    @IBOutlet weak var continueButton: ZFRippleButton!
+    @IBOutlet weak var addPhotosButton: ZFRippleButton!
+    
     func imagePicker(_ picker: Any, didFinishPickingImages images: [UIImage]){
         photos += images
         selectedPhotos.reloadData()
@@ -123,6 +127,7 @@ class PhotosSelectionViewController: UIViewController, UICollectionViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         photos.removeAll()
+        backgroundImage.layer.cornerRadius = backgroundImage.frame.height/2
         selectedPhotos.isHidden = true
         // Do any additional setup after loading the view.
         imagePicker.navigationBar.tintColor = UIColor.white
@@ -131,6 +136,8 @@ class PhotosSelectionViewController: UIViewController, UICollectionViewDelegate,
         imagePicker.navigationBar.barTintColor = UIColor.black
         //Change status bar style
         imagePicker.statusBarPreference = UIStatusBarStyle.lightContent
+        addPhotosButton.layer.cornerRadius = addPhotosButton.frame.height/2
+        continueButton.layer.cornerRadius = continueButton.frame.height/2
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
