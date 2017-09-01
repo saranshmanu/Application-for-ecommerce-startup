@@ -9,26 +9,41 @@
 import UIKit
 import CoreData
 import Firebase
+import UserNotifications
+import FirebaseInstanceID
+import FirebaseMessaging
 import Fabric
 import Answers
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     var window: UIWindow?
     
+    // The callback to handle data message received via FCM for devices running iOS 10 or above.
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print(remoteMessage.appData)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FIRApp.configure()
         Fabric.with([Answers.self])
-//        // Sets background to a blank/empty image
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-//        // Sets shadow (line below the bar) to a blank image
-//        UINavigationBar.appearance().shadowImage = UIImage()
-//        // Sets the translucent background color
-//        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-//        // Set translucent. (Default value is already true, so this can be removed if desired.)
-//        UINavigationBar.appearance().isTranslucent = true
+        if #available(iOS 9.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            // For iOS 10 data message (sent via FCM
+            FIRMessaging.messaging().remoteMessageDelegate = self
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+            
+        FIRApp.configure()
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) {

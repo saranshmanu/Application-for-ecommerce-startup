@@ -16,3 +16,29 @@ var productDescriptionOfTheItem = ["People take millions if not billions of phot
 var productPriceOfTheItem = ["563", "", ""]
 
 var selectedItemNumber = 0
+
+struct userInformation {
+    var name:String
+    var phoneNumber:String
+    var address:String
+    var city:String
+    var pincode:String
+    var state:String
+    var country:String
+}
+
+struct product{
+    var productNumber:String
+    var productName:String
+    var productCost:String
+    var productPdfName:String
+    var addedDate:String
+}
+
+var customer:userInformation = userInformation(name:"", phoneNumber:"", address:"", city:"", pincode:"", state:"", country:"") //UserInformatio
+var productCart = [product]() //listOfAllTheProductsAddedToTheCart
+
+var total = 0 //totalPriceOfItemPurchasedByTheUser
+var vat = 15 //percentageOfVATApplied
+var deliveryDateIncreament = 7 //date after the order is placed for delivery
+var deliveryChargesToBePaid = 50 //deliveryChargesToBePaid

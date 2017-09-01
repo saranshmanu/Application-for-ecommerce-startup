@@ -9,8 +9,6 @@
 import UIKit
 import Firebase
 
-var total = 0
-
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

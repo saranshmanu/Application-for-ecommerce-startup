@@ -61,7 +61,6 @@ class PhotosSelectionViewController: UIViewController, UICollectionViewDelegate,
             let currentDate:String = String(calendar.component(.day, from: date)) + "/" + String(calendar.component(.month, from: date)) + "/" + String(calendar.component(.year, from: date))
             let currentTime:String = String(calendar.component(.hour, from: date)) + ":" + String(calendar.component(.minute, from: date)) + ":" + String(calendar.component(.second, from: date))
             let currentDateAndTime:String = currentDate  + " " + currentTime
-            uploadToFirebase()
             productCart.append(product(productNumber: String(selectedItemNumber), productName:productName[selectedItemNumber], productCost:productPriceOfTheItem[selectedItemNumber], productPdfName: pdfName, addedDate: currentDateAndTime))
             if productCart.count != 0{
                 for i in 0...productCart.count - 1{
@@ -75,27 +74,6 @@ class PhotosSelectionViewController: UIViewController, UICollectionViewDelegate,
         } catch (let error) {
             print(error)
         }
-    }
-    
-    func uploadToFirebase(){
-        let dst = URL(fileURLWithPath: NSTemporaryDirectory().appending(pdfName))
-        // Create a root reference
-        let storageRef = FIRStorage.storage().reference()
-        // File located on disk
-        let localFile = dst
-        // Create a reference to the file you want to upload
-        let riversRef = storageRef.child("images/" + (user?.uid)! + "/" + pdfName)
-        // Upload the file to the path "images/uid/randomNameOfThePdfCreated"
-        let uploadTask = riversRef.putFile(localFile, metadata: nil) { metadata, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
-            } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                let downloadURL = metadata!.downloadURL()
-                print(downloadURL)
-            }
-        }
-        
     }
     
     @IBAction func photosAddedAndContinue(_ sender: Any) {

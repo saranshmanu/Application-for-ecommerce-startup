@@ -25,15 +25,21 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         })
         FIRAuth.auth()?.signIn(withEmail: username.text!, password: password.text!) { (user, error) in
             if error == nil{
-                self.activityIndicator.isHidden = true
-                self.loginButton.isEnabled = true
-                self.username.isEnabled = true
-                self.password.isEnabled = true
                 print("Login Successfull")
-                //Go to the HomeViewController if the login is sucessful
-                self.fetchUserDataFromFirebase()
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
-                self.present(vc!, animated: true, completion: nil)
+                self.fetchUserDataFromFirebase(sample: "", completionHandler: {com in
+                    if com == true{
+                        self.activityIndicator.isHidden = true
+                        self.loginButton.isEnabled = true
+                        self.username.isEnabled = true
+                        self.password.isEnabled = true
+                        //Go to the HomeViewController if the login is sucessful
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+                        self.present(vc!, animated: true, completion: nil)
+                    }
+                    else{
+                        print("Failed to retreive data")
+                    }
+                })
             }
             else{
                 self.activityIndicator.isHidden = true
@@ -53,8 +59,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var username: UITextField!
     
-    func fetchUserDataFromFirebase(){
-        FIRDatabase.database().reference().child("users/" + String(describing: user?.uid)).observeSingleEvent(of: .value , with: { (snapshot) in
+    func fetchUserDataFromFirebase(sample:String, completionHandler: @escaping ((_ exist : Bool) -> Void)){
+        FIRDatabase.database().reference().child("users/" + String(describing: user?.uid) + "/profile").observeSingleEvent(of: .value , with: { (snapshot) in
             // Get user value
             if let value = snapshot.value as? NSDictionary{
                 customer.name = value["name"]! as! String
@@ -71,8 +77,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }) { (error) in
             print(error.localizedDescription)
         }
-        FIRDatabase.database().reference().child("users/" + String(describing: user?.uid)).observe(.childChanged, with: {_ in
-            FIRDatabase.database().reference().child("users/" + String(describing: user?.uid)).observeSingleEvent(of: .value , with: { (snapshot) in
+        FIRDatabase.database().reference().child("users/" + String(describing: user?.uid) + "/profile").observe(.childChanged, with: {_ in
+            FIRDatabase.database().reference().child("users/" + String(describing: user?.uid) + "/profile").observeSingleEvent(of: .value , with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as! NSDictionary
                 customer.name = value["name"] as! String
@@ -90,6 +96,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         })
         FIRDatabase.database().reference().child("users/" + String(describing: user?.uid) + "/cart").observeSingleEvent(of: .value , with: { (snapshot) in
             // Get user value
+            completionHandler(true)
             if let value = snapshot.value as? [NSDictionary]{
                 if value.count != 0{
                     for i in 0...value.count - 1 {
@@ -100,6 +107,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             }
             // ...
         }) { (error) in
+            completionHandler(false)
             print(error.localizedDescription)
         }
     }

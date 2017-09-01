@@ -9,26 +9,6 @@
 import UIKit
 import Firebase
 
-struct userInformation {
-    var name:String
-    var phoneNumber:String
-    var address:String
-    var city:String
-    var pincode:String
-    var state:String
-    var country:String
-}
-struct product{
-    var productNumber:String
-    var productName:String
-    var productCost:String
-    var productPdfName:String
-    var addedDate:String
-}
-
-var customer:userInformation = userInformation(name:"", phoneNumber:"", address:"", city:"", pincode:"", state:"", country:"")
-var productCart = [product]()
-
 let user = FIRAuth.auth()?.currentUser
 
 class UserInformationForDeliveryViewController: UIViewController, UITextFieldDelegate {
@@ -55,8 +35,16 @@ class UserInformationForDeliveryViewController: UIViewController, UITextFieldDel
     @IBAction func continueAction(_ sender: Any) {
         var customerDictionary = ["name":nameTextField.text!, "phoneNumber":phoneNumberTextField.text!, "address":addressTextField.text!, "city":cityTextField.text!, "pincode":pincodeTextField.text!, "state":stateTextField.text!, "country":countryTextField.text!]
         print(customerDictionary)
+        //updating values locally
+        customer.name = customerDictionary["name"]!
+        customer.phoneNumber = customerDictionary["phoneNumber"]!
+        customer.address = customerDictionary["address"]!
+        customer.city = customerDictionary["city"]!
+        customer.pincode = customerDictionary["pincode"]!
+        customer.state = customerDictionary["state"]!
+        customer.country = customerDictionary["country"]!
         //Firebase update information
-        FIRDatabase.database().reference().child("users/" + String(describing: user?.uid)).setValue(customerDictionary)
+        FIRDatabase.database().reference().child("users/" + String(describing: user?.uid) + "/profile").setValue(customerDictionary)
     }
     
     override func viewDidLoad() {
